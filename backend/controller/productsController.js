@@ -155,7 +155,6 @@ exports.deleteProductReviews = catchAsyncError(async (req, res, next) => {
 
     const reviews = product.reviews.filter((rev) => rev.user.toString() !== req.user._id.toString());
 
-
     let avg = 0;
 
     reviews.forEach(rev => {
@@ -172,7 +171,7 @@ exports.deleteProductReviews = catchAsyncError(async (req, res, next) => {
 
     await Product.findByIdAndUpdate(req.query.productId, {
         reviews,
-        rating,
+        ratings,
         numOfReviews
     },
         {

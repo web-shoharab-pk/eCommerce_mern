@@ -1,0 +1,70 @@
+footer {
+    margin-top: 10vmax;
+    padding: 2vmax;
+    background-color: rgb(34, 33, 33);
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+.leftFooter{
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.leftFooter > h4{
+    font-size: 1vmax;
+    font-family: "Franklin Gothic Medium", "Arial Merrow", "Arial", sans-serif;
+}
+
+.leftFooter > p{
+    font-family: "Lucida sans", "Arial Merrow", "Arial", sans-serif;
+    text-align: center;
+}
+.leftFooter > img {
+    width: 10vmax;
+    margin: 1vmax;
+    cursor: pointer;
+}
+
+.midFooter {
+    width: 60%;
+    text-align: center;
+}
+
+.midFooter > h1{
+    font-size: 4vmax;
+    font-family: 'Roboto';
+    color: rgb(240, 220, 44);
+}
+
+.midFooter > p{
+    max-width: 60%;
+    margin: 1vmax auto;
+}
+
+.rightFooter{
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+}
+
+.rightFooter > h4{ 
+    font-family:'Roboto';
+    font-size: 1.4vmax;
+}
+
+.rightFooter > a {
+    text-decoration: none;
+    font-size: 1.3vmax;
+    font-family: "Gill sans", "Gill sans MI", calibri;
+    color: white;
+    margin: .5vmax;
+    transition: all .5s;
+}
+
+.rightFooter > a:hover{
+    color:rgb(235, 215, 35);
+}

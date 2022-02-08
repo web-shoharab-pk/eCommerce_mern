@@ -4,6 +4,7 @@ import Footer from './component/layout/Footer/Footer';
 
 import WebFont from "webfontloader";
 import { lazy, Suspense, useEffect } from 'react';
+import Loader from './component/Loader/Loader';
 const Home =lazy(() => import('./component/Home/Home.js'));
 
 function App() {
@@ -16,7 +17,7 @@ function App() {
     });
   }, []);
   return (
-    <Suspense fallback={<h3>Loading ...</h3>}>
+    <Suspense fallback={<Loader />}>
       {/* <Header />  */}
       <Routes>
         <Route path='/' element={<Home />} />

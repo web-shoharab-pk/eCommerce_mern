@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@mui/icons-material": "^5.4.1",
+    "@mui/material": "^5.4.1",
+    "@mui/styles": "^5.4.1",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
@@ -13,6 +16,7 @@
     "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",
     "react-icons": "^4.3.1",
+    "react-material-ui-carousel": "^3.1.1",
     "react-rating-stars-component": "^2.2.0",
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.2.1",
@@ -50,5 +54,6 @@
   "devDependencies": {
     "overlay-navbar": "^1.1.1"
   },
-  "proxy": "http://localhost:5500"
+  "proxy": "http://192.168.1.106:5500/"
+  
 }

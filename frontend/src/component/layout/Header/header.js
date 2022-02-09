@@ -1,52 +1,33 @@
-import React from 'react'; 
-import { Link } from 'react-router-dom';
+import React, { Fragment } from 'react';
+import { Container, Nav, Navbar, NavLink } from 'react-bootstrap';
+import { Link, NavLink as ActiveRoute } from 'react-router-dom';
 import "./Header.css";
- 
- 
 
 const header = () => {
 
-   
-    const handleToggle = (e ) => {
-      
-        console.log(e) 
-    }
 
-    return ( 
-        <nav>
-            <div class="navbar-area">
-    <div className="nav-container">
-      <nav className="site-navbar"> 
-        <a href="#home" className="site-logo">logo</a>
- 
-        <ul onClick={handleToggle}>
-          <li>
-          <Link className="navbar-link" to="/">Home</Link>
-          </li>
-          <li>
-          <Link className="navbar-link" to="/about">About</Link>
-          </li>
+  return (
 
-          <li>
-          <Link className="navbar-link" to="/contact">Contact</Link>
-          </li>
-          <li>
-          <Link className="navbar-link" to="/contact">test</Link></li>
-        </ul>
-
-        
-        <button  className="nav-toggler">
-          <span></span>
-        </button>
-      </nav>
-    </div>
-  </div> 
-            
-           
-            
-            
-        </nav>
-    );
+    <Fragment>
+      <Navbar className="header-navbar" fixed="top" variant="dark" expand="lg">
+        <Container>
+          <Navbar.Brand href="/">
+            ECOMMERCE
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="ms-auto">
+              <NavLink component={Link} href="/">Home</NavLink>
+              <NavLink component={NavLink} href="/products">Products</NavLink>
+              <NavLink href="/contact">Contact</NavLink>
+              <NavLink component={ActiveRoute} href="/about">About</NavLink>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+      <br />
+    </Fragment>
+  );
 };
 
 export default header;

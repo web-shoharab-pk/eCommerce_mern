@@ -12,7 +12,10 @@
   }
   /* default css end */
   
-  
+  .header-navbar{
+    background-image: linear-gradient(to right, #635dc0, #3027ae);
+    color: white!important;
+  }
   /* navbar regular css start */
   .navbar-area {
     background-image: linear-gradient(to right, #635dc0, #3027ae);

@@ -10,12 +10,12 @@
 }
 
 .banner > h1{
-    margin: 5vmax;
-
+    margin: 3vmax;
     font: 600 2.5vmax "Roboto";
 }
 
 .banner > p{
+    margin: 3vmax;
     font: 300 1.4vmax "Lucida sans";
 
 }
@@ -45,7 +45,7 @@
     position: absolute;
     top: 0%;
     left: 0;
-    clip-path: polygon(100% 70%, 0% 100%, 100% 100%);
+    clip-path: polygon(100% 80%, 0% 100%, 100% 100%);
     max-width: 100%;
 }
 
@@ -57,7 +57,7 @@
     position: absolute;
     top: 0%;
     left: 0;
-    clip-path: polygon(0 70%, 0% 100%, 100% 100%);
+    clip-path: polygon(0 80%, 0% 100%, 100% 100%);
     max-width: 100%;
 }
 

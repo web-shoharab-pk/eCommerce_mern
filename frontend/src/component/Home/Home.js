@@ -4,9 +4,10 @@ import { CgMouse } from "react-icons/cg";
 import { useDispatch, useSelector } from "react-redux";
 import MetaData from '../layout/MetaData';
 import LoaderTwo from '../Loader/LoaderTwo';
-import { getProduct } from './../../actions/productAction';
+import { clearErrors, getProduct } from './../../actions/productAction';
 import './Home.css';
-import Product from './Product.js';
+import ProductCard from './ProductCard.js';
+import Header from './../layout/Header/header';
  
 
 const Home = () => {
@@ -17,16 +18,17 @@ const Home = () => {
     console.log("products", products, productsCount, loading, error,)
     useEffect(() => {
         if(error) {
-            return alert.error(error)
-        }
+            alert.error(error);
+            dispatch(clearErrors())
+          }
         dispatch(getProduct())
     }, [dispatch, alert, error])
  
     return (
         <Fragment>
-
+            <Header />
             <MetaData title="ECOMMERCE" />
-            <div className="banner">
+            <div className="banner pt-5">
                 <p>Welcome to Ecommerce</p>
                 <h1>FIND AMAZING PRODUCTS BELOW</h1>
 
@@ -46,7 +48,7 @@ const Home = () => {
                         {
                             products &&
                             products.map(product => (
-                                <Product key={product._id} product={product} />
+                                <ProductCard key={product._id} product={product} />
                             ))
                         }
                     </div>

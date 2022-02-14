@@ -15,6 +15,9 @@
   .header-navbar{
     background-image: linear-gradient(to right, #635dc0, #3027ae);
     color: white!important;
+     /* height: 67px; */
+    /* max-height: 100%; */
+    padding: 0.5vmax 2.5vmax;
   }
   /* navbar regular css start */
   .navbar-area {

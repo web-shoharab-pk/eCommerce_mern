@@ -10,7 +10,7 @@ const header = () => {
 
     <Fragment>
       <Navbar className="header-navbar" fixed="top" variant="dark" expand="lg">
-        <Container>
+        {/* <Container> */}
           <Navbar.Brand href="/">
             ECOMMERCE
           </Navbar.Brand>
@@ -20,12 +20,13 @@ const header = () => {
               <NavLink component={Link} href="/">Home</NavLink>
               <NavLink component={NavLink} href="/products">Products</NavLink>
               <NavLink href="/contact">Contact</NavLink>
+              <NavLink component={ActiveRoute} href="/search">Search</NavLink>
               <NavLink component={ActiveRoute} href="/about">About</NavLink>
             </Nav>
           </Navbar.Collapse>
-        </Container>
+        {/* </Container> */}
       </Navbar>
-      <br />
+      <br /> 
     </Fragment>
   );
 };

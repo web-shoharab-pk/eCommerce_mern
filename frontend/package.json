@@ -56,6 +56,5 @@
   },
   "devDependencies": {
     "overlay-navbar": "^1.1.1"
-  },
-  "proxy": "http://192.168.1.106:5500/"
+  }
 }

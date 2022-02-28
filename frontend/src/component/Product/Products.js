@@ -2,15 +2,17 @@
 import Slider from '@mui/material/Slider';
 import Typography from '@mui/material/Typography';
 import React, { Fragment, useEffect, useState } from 'react';
+import { useAlert } from 'react-alert';
 import Pagination from "react-js-pagination";
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
-import { getProduct } from '../../actions/productAction';
+import { clearErrors, getProduct } from '../../actions/productAction';
 import ProductCard from '../Home/ProductCard';
 import LoaderTwo from '../Loader/LoaderTwo';
 import './../Home/Home.css';
 import Header from './../layout/Header/header';
 import './Products.css';
+import MetaData from '../layout/MetaData';
 
 const categories = [
     "Laptop",
@@ -22,12 +24,11 @@ const categories = [
 
 
 const Products = () => {
-
+    const alert = useAlert()
     const [currentPage, setCurrentPage] = useState(1);
     const [price, setPrice] = useState([0, 25000]);
     const [category, setCategory] = useState("")
-    const [ratings, setRatings] = useState(0)
-console.log("ratings", ratings)
+    const [ratings, setRatings] = useState(0);
     const dispatch = useDispatch()
     const { products, loading, error, productsCount, resultPerPage, } = useSelector(state => state.products)
     const { keyword } = useParams();
@@ -41,12 +42,17 @@ console.log("ratings", ratings)
     }
 
     useEffect(() => {
+        if(error) {
+            alert.error(alert)
+            dispatch(clearErrors())
+        }
         setTimeout(() => {
             dispatch(getProduct(keyword, currentPage, price, category, ratings))
         }, 500);
-    }, [dispatch, keyword, currentPage, price, category, ratings]);
+    }, [dispatch, keyword, currentPage, price, category, ratings, error, alert]);
     return (
         <Fragment>
+            <MetaData title="Products -- ECOMMERCE" />
             <Header /><br /><br />
             {
                 loading ? <LoaderTwo />
@@ -60,49 +66,53 @@ console.log("ratings", ratings)
                                 ))
                             }
                         </div>
+                        {
+                            keyword ?
+                                <div className="filterBox">
+                                    <Typography>Price</Typography>
+                                    <br />
+                                    <Slider
+                                        value={price}
+                                        onChange={priceHandler}
+                                        valueLabelDisplay="auto"
+                                        aria-labelledby='range-slider'
+                                        min={0}
+                                        max={25000}
+                                    />
 
-                        <div className="filterBox">
-                            <Typography>Price</Typography>
-                            <br />
-                            <Slider
-                                value={price}
-                                onChange={priceHandler}
-                                valueLabelDisplay="auto"
-                                aria-labelledby='range-slider'
-                                min={0}
-                                max={25000}
-                            />
+                                    <Typography>Categories</Typography>
+                                    <ul className="categoryBox">
+                                        {
+                                            categories.map((category) => (
+                                                <li
+                                                    className="category-link"
+                                                    key={category}
+                                                    onClick={() => setCategory(category)}
+                                                >
+                                                    {category}
+                                                </li>
+                                            ))
+                                        }
+                                    </ul>
 
-                            <Typography>Categories</Typography>
-                            <ul className="categoryBox">
-                                {
-                                    categories.map((category) => (
-                                        <li
-                                            className="category-link"
-                                            key={category}
-                                            onClick={() => setCategory(category)}
-                                        >
-                                            {category}
-                                        </li>
-                                    ))
-                                }
-                            </ul>
+                                    <fieldset>
+                                        <legend component="legend">Rating Above</legend>
+                                        <Slider
+                                            value={ratings}
+                                            onChange={(e, newRating) => {
+                                                setRatings(newRating);
+                                            }}
+                                            aria-labelledby="continuous-slider"
+                                            valueLabelDisplay="auto"
+                                            min={0}
+                                            max={5}
+                                        />
+                                    </fieldset>
 
-                            <fieldset>
-                                <legend component="legend">Rating Above</legend>
-                                <Slider
-                                    value={ratings}
-                                    onChange={(e, newRating) => {
-                                        setRatings(newRating);
-                                    }}
-                                    aria-labelledby="continuous-slider"
-                                    valueLabelDisplay="auto"
-                                    min={0}
-                                    max={5}
-                                />
-                            </fieldset>
+                                </div>
+                                : ''
+                        }
 
-                        </div>
                         {
                             ((resultPerPage < productsCount) && (products.length !== 0)) &&
                             (

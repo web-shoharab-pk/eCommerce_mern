@@ -37,7 +37,6 @@ const ProductDetail = ({ match }) => {
 
     return (
         <Fragment>
-            {/* <Header /> */}
             {
                 loading ? <LoaderTwo />
                     :

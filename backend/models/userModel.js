@@ -8,13 +8,13 @@ const userSchema = new mongoose.Schema({
 
     name: {
         type: String,
-        required: [true, "Please Enter Product Name"],
+        required: [true, "Please Enter Your Name"],
         maxLength: [30, "Name Cannot Exceed 30 Characters"],
         minLength: [4, "Name Cannot Exceed 4 Characters"]
     },
     email: {
         type: String,
-        required: [true, "Please Enter Product Email"],
+        required: [true, "Please Enter Your Email"],
         unique: true,
         validate: [validator.isEmail, "Please Enter valid Email"]
     },
@@ -74,7 +74,7 @@ userSchema.methods.getResetPasswordToken = function () {
         .update(resetToken)
         .digest("hex");
 
-        this.resetPasswordExpire = Date.now() + 15 * 60 * 1000;
+        this.resetPasswordExpire = Date.now() + 15 * 24 * 60 * 60 * 1000;
 
     return resetToken;
 };

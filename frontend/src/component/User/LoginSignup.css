@@ -1,0 +1,204 @@
+.LoginSignUpContainer{
+    width: 100vw;
+    height: 100vh;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(231, 231, 231);
+    position: fixed;
+    top: 5%;
+    left: 0%;
+}
+
+.LoginSignUpBox {
+    background-color: white;
+    width: 25vw;
+    height: 70vh;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.login_signUp_toggle {
+    display: flex;
+    height: 3vmax;
+}
+
+.login_signUp_toggle > p {
+    color: rgba(0, 0, 0, 0.678);
+    font: 300 1vmax "Roboto";
+    transition: all 0.5s;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    
+    padding: 1.5vmax 0;
+}
+
+.login_signUp_toggle > p:hover {
+    color: tomato;
+}
+
+.LoginSignUpBox > div > button {
+
+    background-color: tomato;
+    height: 3px;
+    width: 50%;
+    border: none;
+    transition: all 0.5s;
+}
+
+.loginForm, .signUpForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    padding: 2vmax;
+    justify-content: space-evenly;
+    height: 70%;
+    transition: all 0.5s;
+}
+
+.signUpForm{
+    transform: translateY(-100%) translateX(-100vmax);
+}
+
+.loginForm > div, .signUpForm > div {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.loginForm > div > input, .signUpForm > div > input {
+    padding: 1vmax 3vmax;
+    padding-right: 1vmax;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.267);
+    border-radius: 4px;
+    font: 500 0.9vmax cursive;
+}
+
+.loginForm > div > svg, .signUpForm > div > svg {
+    position: absolute;
+    transform: translateX(1vmax);
+    font-size: 1.6vmax;
+    color: rgba(0, 0, 0, 0.623)
+}
+
+.loginForm > a {
+    color: rgba(0, 0, 0, 0.65);
+    text-decoration: none;
+    align-self: flex-end;
+    transition: all 0.5s;
+    font: 500 0.8vmax "Gill sens";
+}
+
+.loginForm > a:hover{
+    color: black;
+}
+#registerImage > img {
+    width: 5vmax;
+    border-radius: 100%;
+}
+
+#registerImage > input {
+    display: flex;
+    padding: 0%;
+}
+#registerImage > input::-webkit-file-upload-button {
+    cursor: pointer;
+    width: 100%;
+    z-index: 2;
+    height: 5vmax;
+    margin: 0%;
+    border: none;
+    font: 400 0.8vmax cursive;
+    color: rgba(0, 0, 0, 0.632);
+    background-color: white;
+}
+
+#registerImage > input:hover {
+    background-color: rgb(185, 184, 184);
+}
+.loginBtn, .signupBtn {
+    border: none;
+    background-color: tomato;
+    color: white;
+    font: 500 1vmax "Roboto";
+    width: 100%;
+    cursor: pointer;
+    padding: 1vmax;
+    transition: all 0.5s;
+    border-radius: 4px;
+    outline: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.213);
+}
+
+.loginBtn:hover, .signupBtn:hover {
+    background-color: rgb(179, 66, 46);
+}
+
+.shiftToLeft{
+    transform: translateX(-100%);
+}
+
+.shiftToNeutral {
+    transform: translateX(0%);
+}
+
+.shiftToNeutralForm {
+    transform: translateX(0%) translateY(-100%)
+}
+
+.shiftToRight{
+    transform: translateX(100%)
+}
+
+
+@media screen and (max-width: 600px){
+    
+    .LoginSignUpContainer {
+        background-color: white;
+
+    }
+    .LoginSignUpBox {
+        width: 100vw;
+        height: 95vh;
+    }
+
+    .login_signUp_toggle {
+        height: 5vmax;
+    }
+    .login_signUp_toggle > p {
+        font: 400 2.5vmax "Roboto";
+        padding: 1.5vmax 0;
+    }
+    .loginForm > div > input, .signUpForm > div > input {
+        padding: 2.5vmax 5vmax;
+        font: 400 1.7vmax cursive;
+    }
+
+    .loginForm > div > svg, .signUpForm > div > svg{
+        font-size: 2.8vmax ;
+    }
+
+    .loginForm > a {
+        font: 500 2.8vmax "Gill sans";
+    }
+
+    #registerImage > img {
+        width: 8vmax;
+        border-radius: 100%;
+    }
+
+    #registerImage > input::-webkit-file-upload-button {
+        height: 7vh;
+        font: 500 1.5vmax cursive;
+    }
+    .loginBtn, .signupBtn {
+        padding: 2vmax;
+        font-size: 2vmax;
+    }
+}

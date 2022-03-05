@@ -17,11 +17,13 @@ const header = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
-              <NavLink component={Link} href="/">Home</NavLink>
-              <NavLink component={NavLink} href="/products">Products</NavLink>
-              <NavLink href="/contact">Contact</NavLink>
-              <NavLink component={ActiveRoute} href="/search">Search</NavLink>
-              <NavLink component={ActiveRoute} href="/about">About</NavLink>
+               <Link component={NavLink} to="/"> Home</Link> 
+               <Link component={NavLink} to="/account">Account</Link> 
+              <Link component={NavLink} to="/products">Products</Link>
+              <Link component={NavLink} to="/contact">Contact</Link>
+              <Link component={NavLink} to="/search">Search</Link>
+              <Link component={NavLink} to="/about">About</Link>
+              <Link component={NavLink} to="/login">Login</Link>
             </Nav>
           </Navbar.Collapse>
         {/* </Container> */}

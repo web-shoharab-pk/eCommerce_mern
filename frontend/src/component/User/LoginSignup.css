@@ -78,6 +78,7 @@
     border: 1px solid rgba(0, 0, 0, 0.267);
     border-radius: 4px;
     font: 500 0.9vmax cursive;
+    margin: 1vmax 0;
 }
 
 .loginForm > div > svg, .signUpForm > div > svg {
@@ -99,8 +100,8 @@
     color: black;
 }
 #registerImage > img {
-    width: 5vmax;
-    border-radius: 100%;
+    width: 3vmax;
+    border-radius: 50%;
 }
 
 #registerImage > input {
@@ -111,7 +112,7 @@
     cursor: pointer;
     width: 100%;
     z-index: 2;
-    height: 5vmax;
+    height: 3vmax;
     margin: 0%;
     border: none;
     font: 400 0.8vmax cursive;

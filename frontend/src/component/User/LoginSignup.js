@@ -5,7 +5,7 @@ import React, { Fragment, useEffect, useRef, useState } from 'react';
 import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { clearErrors, login } from '../../actions/userAction';
+import { clearErrors, login, register } from '../../actions/userAction';
 import LoaderTwo from '../Loader/LoaderTwo';
 import profile from './../../images/Profile.png';
 import './LoginSignup.css';
@@ -48,7 +48,7 @@ const LoginSignup = () => {
         myForm.set("password", password);
         myForm.set("avatar", avatar);
 
-        console.log("SignUp Form Submited");
+       dispatch(register(myForm));
 
     }
 
@@ -161,7 +161,7 @@ const LoginSignup = () => {
                                         <MailOutlineIcon />
                                         <input
                                             type="email"
-                                            name=""
+                                            name="email"
                                             value={email}
                                             onChange={registerDataChange}
                                             required placeholder="Email" id="" />
@@ -170,7 +170,7 @@ const LoginSignup = () => {
                                         <LockOpenIcon />
                                         <input
                                             type="password"
-                                            name=""
+                                            name="password"
                                             value={password}
                                             onChange={registerDataChange}
                                             required placeholder="Password" id="" />

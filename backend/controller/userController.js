@@ -4,7 +4,7 @@ const User = require("../models/userModel");
 const sendToken = require("../utils/jwtToken");
 const sendEmail = require("./../utils/sendEmail");
 const crypto = require("crypto");
-const cloudinary = require("cloudinary");
+const cloudinary = require("cloudinary");  
 
 // registerUser 
 exports.registerUser = catchAsyncError(async (req, res, next) => {
@@ -52,7 +52,9 @@ exports.loginUser = catchAsyncError(async (req, res, next) => {
         return next(new ErrorHandler("Invalid email or password", 401));
     }
 
-    sendToken(user, 200, res)
+    sendToken(user, 200, res);
+   
+    console.log(req.cookies.token);
 });
 
 // LOGOUT USER

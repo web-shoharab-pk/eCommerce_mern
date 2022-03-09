@@ -2,6 +2,7 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import PersonIcon from '@mui/icons-material/Person';
+import { Backdrop } from '@mui/material';
 import Box from '@mui/material/Box';
 import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
@@ -44,6 +45,7 @@ const UserOptions = ({ user }) => {
             <Box
             //  sx={{ height: 320, transform: 'translateZ(0px)', flexGrow: 1 }}
             >
+                <Backdrop open={open} style={{zIndex: '10'}} />
                 <SpeedDial
                     ariaLabel="SpeedDial basic example"
                     direction='down'

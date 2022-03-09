@@ -10,11 +10,13 @@ import LoginSignup from './component/User/LoginSignup';
 import store from './store';
 import { loadUser } from './actions/userAction';
 import { useSelector } from 'react-redux';
+import ProtectedRoute from './component/Route/ProtectedRoute';
 const Home =lazy(() => import('./component/Home/Home.js'));
 const ProductDetails = lazy(() => import('./component/Product/ProductDetail.js'))
 const Products = lazy(() => import('./component/Product/Products.js'));
 const Search = lazy(() => import('./component/Product/Search.js'));
-
+const Profile = lazy(() => import('./component/User/Profile.js'))
+const UpdateProfile = lazy(() => import('./component/User/UpdateProfile.js'))
 
 
 function App() {
@@ -45,6 +47,10 @@ function App() {
         <Route path='/products/:keyword' element={<Products />} />
         <Route path='/search' element={<Search />} />
         <Route path='/login' element={<LoginSignup />} />
+        <Route element={<ProtectedRoute user={user} />}>
+        <Route path='/account' element={<Profile />} />
+          <Route path="/me/update" element={<UpdateProfile />} />
+        </Route>
       </Routes>
       <Footer />
     </Suspense>

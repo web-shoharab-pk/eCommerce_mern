@@ -135,3 +135,15 @@
     }  
     /* navbar css for mobile end */
   }
+
+  .speedDial {
+    position: fixed;
+    right: 2vmax;
+    top: 6vmax;
+  }
+
+  .speedDialIcon {
+    width: 56px;
+    height: 56px;
+    border-radius: 100%;
+  }

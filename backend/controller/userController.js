@@ -4,7 +4,7 @@ const User = require("../models/userModel");
 const sendToken = require("../utils/jwtToken");
 const sendEmail = require("./../utils/sendEmail");
 const crypto = require("crypto");
-const cloudinary = require("cloudinary");  
+const cloudinary = require("cloudinary");
 
 // registerUser 
 exports.registerUser = catchAsyncError(async (req, res, next) => {
@@ -53,7 +53,7 @@ exports.loginUser = catchAsyncError(async (req, res, next) => {
     }
 
     sendToken(user, 200, res);
-   
+
     console.log(req.cookies.token);
 });
 
@@ -182,9 +182,31 @@ exports.updateUserProfile = catchAsyncError(async (req, res, next) => {
 
     const newUserData = {
         name: req.body.name,
-        email: req.body.email
+        email: req.body.email,
+    } 
+
+    if (req.body.avatar !== undefined && req.body.avatar !== "") {
+        const user = await User.findById(req.user.id);
+
+        const imageId = user.avatar.public_id;
+
+        await cloudinary.v2.uploader.destroy(imageId);
+
+        const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
+            folder: "avatars",
+            width: 150,
+            height: 150,
+            crop: "scale",
+        });
+
+        newUserData.avatar = {
+            public_id: myCloud.public_id,
+            url: myCloud.secure_url
+        }
     }
-    const user = await User.findByIdAndUpdate(req.user._id,
+
+
+     await User.findByIdAndUpdate(req.user._id,
         newUserData, {
         new: true,
         runValidators: true,
@@ -193,8 +215,7 @@ exports.updateUserProfile = catchAsyncError(async (req, res, next) => {
 
     res.status(200).json({
         success: true,
-        message: "User Updated!",
-        user,
+        message: "User Updated!" 
     })
 });
 
@@ -263,6 +284,6 @@ exports.deleteUser = catchAsyncError(async (req, res, next) => {
     await user.remove();
     res.status(200).json({
         success: true,
-        message: "User Deleted Successfully!" 
+        message: "User Deleted Successfully!"
     })
 });

@@ -16,7 +16,8 @@ const ProductDetails = lazy(() => import('./component/Product/ProductDetail.js')
 const Products = lazy(() => import('./component/Product/Products.js'));
 const Search = lazy(() => import('./component/Product/Search.js'));
 const Profile = lazy(() => import('./component/User/Profile.js'))
-const UpdateProfile = lazy(() => import('./component/User/UpdateProfile.js'))
+const UpdateProfile = lazy(() => import('./component/User/UpdateProfile.js'));
+const UpdatePassword = lazy(() => import('./component/User/UpdatePassword.js'));
 
 
 function App() {
@@ -50,6 +51,7 @@ function App() {
         <Route element={<ProtectedRoute user={user} />}>
         <Route path='/account' element={<Profile />} />
           <Route path="/me/update" element={<UpdateProfile />} />
+          <Route path="/password/update" element={<UpdatePassword />} />
         </Route>
       </Routes>
       <Footer />

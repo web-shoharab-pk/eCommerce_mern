@@ -10,6 +10,7 @@ import { loadUser } from './../../actions/userAction';
 import { UPDATE_PROFILE_RESET } from './../../constants/userConstats';
 import profile from './../../images/Profile.png';
 import './UpdateProfile.css';
+import MetaData from '../layout/MetaData';
 
 const UpdateProfile = () => {
 
@@ -33,7 +34,9 @@ const UpdateProfile = () => {
 
         myForm.set("name", name);
         myForm.set("email", email);
-        myForm.set("avatar", avatar);
+        if(!!avatar) {
+            myForm.set("avatar", avatar);
+        }
 
         dispatch(updateProfile(myForm));
 
@@ -75,19 +78,20 @@ const UpdateProfile = () => {
 
     return (
         <Fragment>
+            <MetaData title="Update Profile"/>
             {
                 !user ? <LoaderTwo />
                     :
                     <Fragment>
                         <div className="updateProfileContainer">
                             <div className="updateProfileBox">
+                                <h2 className="updateProfileHeading">Update Profile</h2>
                                 <form
                                     onSubmit={updateProfileSubmit}
-                                    // className="signUpForm"
-                                    // ref={updateProfileTab}
+                                    className="updateProfileForm" 
                                     action=""
                                     encType="multipart/form-data">
-                                    <div className="signUpName">
+                                    <div className="updateProfileName">
                                         <FaceIcon />
                                         <input
                                             type="text"
@@ -95,10 +99,10 @@ const UpdateProfile = () => {
                                             required
                                             name="name"
                                             value={name}
-                                            onChange={updateProfileDataChange}
+                                            onChange={({target}) => setName(target.value)}
                                             id="" />
                                     </div>
-                                    <div className="signUpEmail">
+                                    <div className="updateProfileEmail">
                                         <MailOutlineIcon />
                                         <input
                                             type="email"
@@ -117,7 +121,7 @@ const UpdateProfile = () => {
                                     </div>
 
                                     <input
-                                        type="submit" value="Update Profile" className="signupBtn"
+                                        type="submit" value="Update" className="updateProfileBtn"
                                         disabled={loading ? true : false}
                                     />
                                 </form>

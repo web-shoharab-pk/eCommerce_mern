@@ -12,7 +12,7 @@ import { transitions,Provider as AlertProvider, positions } from "react-alert";
 import AlertTemplate  from "react-alert-template-basic";
 
 const options = {
-  timeout: 5000,
+  timeout: 3000,
   position: positions.BOTTOM_CENTER,
   transitions: transitions.SCALE
 }

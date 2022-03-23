@@ -80,7 +80,7 @@ const UpdateProfile = () => {
         <Fragment>
             <MetaData title="Update Profile"/>
             {
-                !user ? <LoaderTwo />
+                !user || loading ? <LoaderTwo />
                     :
                     <Fragment>
                         <div className="updateProfileContainer">
@@ -108,7 +108,7 @@ const UpdateProfile = () => {
                                             type="email"
                                             name="email"
                                             value={email}
-                                            onChange={updateProfileDataChange}
+                                            onChange={({target}) => setEmail(target.value)}
                                             required placeholder="Email" id="" />
                                     </div>
 

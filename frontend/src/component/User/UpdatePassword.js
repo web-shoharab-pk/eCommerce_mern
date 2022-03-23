@@ -58,7 +58,6 @@ const UpdatePassword = () => {
     }, [error, dispatch, alert, navigate, isUpdated])
 
 
-
     return (
         <Fragment>
         <MetaData title="Change Password"/>
@@ -71,9 +70,7 @@ const UpdatePassword = () => {
                             <h2 className="updatePasswordHeading">Change Password</h2>
                             <form
                                 onSubmit={updatePasswordSubmit}
-                                className="updatePasswordForm" 
-                                action=""
-                                encType="multipart/form-data">
+                                className="updatePasswordForm">
                                    <div className="loginPassword">
                                         <LockOpenIcon />
                                         <input

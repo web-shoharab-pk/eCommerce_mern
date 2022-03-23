@@ -18,6 +18,8 @@ const Search = lazy(() => import('./component/Product/Search.js'));
 const Profile = lazy(() => import('./component/User/Profile.js'))
 const UpdateProfile = lazy(() => import('./component/User/UpdateProfile.js'));
 const UpdatePassword = lazy(() => import('./component/User/UpdatePassword.js'));
+const ForgotPassword = lazy(() => import('./component/User/ForgotPassword.js'));
+const ResetPassword = lazy(() => import('./component/User/ResetPassword.js'));
 
 
 function App() {
@@ -53,6 +55,8 @@ function App() {
           <Route path="/me/update" element={<UpdateProfile />} />
           <Route path="/password/update" element={<UpdatePassword />} />
         </Route>
+        <Route path="/password/forgot" element={<ForgotPassword />} />
+        <Route path="/password/reset/:token" element={<ResetPassword />} />
       </Routes>
       <Footer />
     </Suspense>

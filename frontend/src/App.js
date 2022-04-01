@@ -11,15 +11,16 @@ import store from './store';
 import { loadUser } from './actions/userAction';
 import { useSelector } from 'react-redux';
 import ProtectedRoute from './component/Route/ProtectedRoute';
-const Home =lazy(() => import('./component/Home/Home.js'));
-const ProductDetails = lazy(() => import('./component/Product/ProductDetail.js'))
-const Products = lazy(() => import('./component/Product/Products.js'));
-const Search = lazy(() => import('./component/Product/Search.js'));
-const Profile = lazy(() => import('./component/User/Profile.js'))
-const UpdateProfile = lazy(() => import('./component/User/UpdateProfile.js'));
-const UpdatePassword = lazy(() => import('./component/User/UpdatePassword.js'));
-const ForgotPassword = lazy(() => import('./component/User/ForgotPassword.js'));
-const ResetPassword = lazy(() => import('./component/User/ResetPassword.js'));
+const Home =lazy(() => import('./component/Home/Home'));
+const ProductDetails = lazy(() => import('./component/Product/ProductDetail'))
+const Products = lazy(() => import('./component/Product/Products'));
+const Search = lazy(() => import('./component/Product/Search'));
+const Profile = lazy(() => import('./component/User/Profile'))
+const UpdateProfile = lazy(() => import('./component/User/UpdateProfile'));
+const UpdatePassword = lazy(() => import('./component/User/UpdatePassword'));
+const ForgotPassword = lazy(() => import('./component/User/ForgotPassword'));
+const ResetPassword = lazy(() => import('./component/User/ResetPassword'));
+const Cart = lazy(() => import('./component/Cart/Cart'));
 
 
 function App() {
@@ -50,6 +51,7 @@ function App() {
         <Route path='/products/:keyword' element={<Products />} />
         <Route path='/search' element={<Search />} />
         <Route path='/login' element={<LoginSignup />} />
+        <Route path='/cart' element={<Cart />} />
         <Route element={<ProtectedRoute user={user} />}>
         <Route path='/account' element={<Profile />} />
           <Route path="/me/update" element={<UpdateProfile />} />

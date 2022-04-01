@@ -38,7 +38,7 @@ const ForgotPassword = () => {
             alert.error(error);
             dispatch(clearErrors())
         }
-    }, [error, dispatch, message, alert])
+    }, [error, dispatch, message, alert, user, navigate])
     return (
         <Fragment>
             <MetaData title="Forgot Password" />

@@ -1,9 +1,10 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { useAlert } from "react-alert";
 import Carousel from 'react-material-ui-carousel';
 import ReactStars from 'react-rating-stars-component';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { addItemsToCart } from '../../actions/cartAction';
 import { clearErrors, getProductDetails } from '../../actions/productAction';
 import MetaData from '../layout/MetaData';
 import LoaderTwo from './../Loader/LoaderTwo';
@@ -33,6 +34,25 @@ const ProductDetail = ({ match }) => {
         size: window.innerWidth < 600 ? 20 : 25,
         value: product.rating,
         isHalf: true
+    }
+
+    const [quantity, setQuantity] = useState(1);
+
+    const decreseQuantity = () => {
+        if(1 >= quantity) return; 
+        const qty = quantity - 1;
+        setQuantity(qty)
+    }
+
+    const increaseQuantity = () => {
+        if(product.stock <= quantity) return alert.info("Maximum stock added, You can't add more!"); 
+        const qty = quantity + 1;
+        setQuantity(qty)
+    }
+
+    const addToCartHandler = () => {
+        dispatch(addItemsToCart(id, quantity));
+        alert.success("Item Added To Cart")
     }
 
     return (
@@ -73,11 +93,11 @@ const ProductDetail = ({ match }) => {
                                         <h1>৳{product.price}</h1>
                                         <div className="detailsBlock-3-1">
                                             <div className="detailsBlock-3-1-1">
-                                                <button>-</button>
-                                                <input type="number" value="1" />
-                                                <button>+</button>
+                                                <button onClick={decreseQuantity}>-</button>
+                                                <input readOnly type="number" value={quantity} />
+                                                <button onClick={increaseQuantity}>+</button>
                                             </div>
-                                            <button>Add To Cart</button>
+                                            <button onClick={addToCartHandler}>Add To Cart</button>
                                         </div>
                                         <p>
                                             status: {"  "}

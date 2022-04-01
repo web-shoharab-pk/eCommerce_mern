@@ -20,7 +20,7 @@ const header = () => {
             <Link component={NavLink} to="/"> Home</Link>
             <Link component={NavLink} to="/account">Account</Link>
             <Link component={NavLink} to="/products">Products</Link>
-            <Link component={NavLink} to="/contact">Contact</Link>
+            <Link component={NavLink} to="/cart">Cart</Link>
             <Link component={NavLink} to="/search">Search</Link>
             <Link component={NavLink} to="/about">About</Link>
             <Link component={NavLink} to="/login">Login</Link>

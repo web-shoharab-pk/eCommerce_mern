@@ -1,3 +1,51 @@
+// config related to code formatting
 {
-  "files.autoSave": "afterDelay"
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "[javascript]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.organizeImports": true
+  },
+  "eslint.alwaysShowStatus": true,
+  "terminal.integrated.defaultProfile.windows": "Git Bash",
+  //  "terminal.integrated.fontFamily": "monospace",
+  "workbench.iconTheme": "vscode-icons",
+  "workbench.colorTheme": "Monokai Classic",
+  "editor.fontSize": 16,
+  "tabnine.experimentalAutoImports": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "files.autoSaveDelay": 1500,
+  "grunt.autoDetect": "on",
+  "files.autoSave": "afterDelay",
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "files.exclude": {
+    "**/.classpath": true,
+    "**/.project": true,
+    "**/.settings": true,
+    "**/.factorypath": true
+  },
+  // "terminal.integrated.automationShell.linux": "Ubuntu-20.04 (WSL)",
+  "[dart]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.rulers": [80],
+    "editor.selectionHighlight": false,
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "editor.suggestSelection": "first",
+    "editor.tabCompletion": "onlySnippets",
+    "editor.wordBasedSuggestions": false
+  },
+  "emulator.emulatorPathWindows": "C:\\Users\\pc\\AppData\\Local\\Android\\Sdk",
+  "terminal.integrated.fontFamily": "monospace",
+  "thunder-client.codeSnippetLanguage": "cs-httpclient",
+  "json.maxItemsComputed": 500000,
+  "git.autofetch": true
 }

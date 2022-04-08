@@ -66,8 +66,8 @@ const Products = () => {
                                 ))
                             }
                         </div>
-                        {
-                            keyword ?
+                        {/* {
+                            keyword ? */}
                                 <div className="filterBox">
                                     <Typography>Price</Typography>
                                     <br />
@@ -110,8 +110,8 @@ const Products = () => {
                                     </fieldset>
 
                                 </div>
-                                : ''
-                        }
+                                {/* : ''
+                        } */}
 
                         {
                             ((resultPerPage < productsCount) && (products.length !== 0)) &&

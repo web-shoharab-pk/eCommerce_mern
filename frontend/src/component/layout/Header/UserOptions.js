@@ -8,11 +8,11 @@ import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
 import React, { Fragment, useState } from 'react';
 import { useAlert } from 'react-alert';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../../../actions/userAction';
 import './Header.css';
-
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 const UserOptions = ({ user }) => {
 
@@ -20,6 +20,7 @@ const UserOptions = ({ user }) => {
     const [open, setOpen] = useState(false);
     const dispatch = useDispatch();
     const alert = useAlert()
+    const {cartItems} = useSelector(state => state.cart)
 
     const redirectRoute = (route) => {
         navigate(route)
@@ -33,6 +34,7 @@ const UserOptions = ({ user }) => {
     const actions = [
 
         { icon: <PersonIcon />, name: 'Profile', func: () => redirectRoute("/account") },
+        { icon: <ShoppingCartIcon style={{color: cartItems.length ? 'tomato':'unset'}} />, name:`Cart(${cartItems.length})`, func: () => redirectRoute("/cart") },
         { icon: <ListAltIcon />, name: 'Orders', func: () => redirectRoute("/orders") },
         { icon: <ExitToAppIcon />, name: 'Logout', func: () => logoutUser() },
     ];
@@ -65,6 +67,7 @@ const UserOptions = ({ user }) => {
                             icon={action.icon}
                             tooltipTitle={action.name}
                             onClick={() => action.func()}
+                            tooltipOpen
                         />
                     ))}
                 </SpeedDial>

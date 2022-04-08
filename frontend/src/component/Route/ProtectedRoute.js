@@ -1,3 +1,4 @@
+import { useLayoutEffect, useState } from 'react';
 import {
     Navigate,
     Outlet,
@@ -6,11 +7,14 @@ import {
 
 const ProtectedRoute = ({ user }) => {
     const location = useLocation();
-
+    const [isLogin, setIsLogin] = useState(false);
     const path = location.pathname ? location.pathname : '/login';
 
-
-    if (!user?.name) {
+    useLayoutEffect(() => {
+        setIsLogin(!user?.name)
+    }, [user?.name])
+    
+    if (isLogin) {
         return <Navigate replace={true} to={path} />;
     }
 

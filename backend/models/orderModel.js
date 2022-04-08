@@ -99,6 +99,7 @@ const orderSchema = new mongoose.Schema({
     default: "Processing",
   },
   deliveredAt: Date,
+  paymentIntent: Object,
   createdAt: {
     type: Date,
     default: Date.now,

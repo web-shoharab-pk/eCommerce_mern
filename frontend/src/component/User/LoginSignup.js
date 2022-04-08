@@ -4,7 +4,7 @@ import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import React, { Fragment, useEffect, useRef, useState } from 'react';
 import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { clearErrors, login, register } from '../../actions/userAction';
 import LoaderTwo from '../Loader/LoaderTwo';
 import profile from './../../images/Profile.png';
@@ -22,6 +22,9 @@ const LoginSignup = () => {
 
     const { error, loading, isAuthenticated } = useSelector(state => state.user);
 
+    const location = useLocation();
+    const redirect = location.search  ? location.search.split("=")[1] : '/account';
+
     const [user, setUser] = useState({
         name: "",
         email: "",
@@ -34,8 +37,7 @@ const LoginSignup = () => {
 
     const loginSubmit = (e) => {
         e.preventDefault();
-        dispatch(login(loginEmail, loginPassword))
-        console.log("Login Form Submited");
+        dispatch(login(loginEmail, loginPassword)) 
     }
 
     const registerSubmit = (e) => {
@@ -59,9 +61,9 @@ const LoginSignup = () => {
         }
 
         if(isAuthenticated) {
-            navigate('/account')
+            navigate(redirect)
         }
-    }, [error, dispatch, alert, isAuthenticated, navigate])
+    }, [error, dispatch, alert, isAuthenticated, navigate, redirect])
 
     const registerDataChange = (e) => {
 

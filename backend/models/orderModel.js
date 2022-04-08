@@ -24,7 +24,7 @@ const orderSchema = new mongoose.Schema({
       type: Number,
       required: true,
     },
-    phoneNo: {
+    phone: {
       type: Number,
       required: true,
     },
@@ -83,7 +83,7 @@ const orderSchema = new mongoose.Schema({
     required: true,
     default: 0,
   },
-  shippingPrice: {
+  shippingCharges: {
     type: Number,
     required: true,
     default: 0,

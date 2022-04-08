@@ -1,11 +1,17 @@
 import {
     Navigate,
-    Outlet
+    Outlet,
+    useLocation
 } from 'react-router-dom';
 
-const ProtectedRoute = ({ user, redirectPath = '/login' }) => {
+const ProtectedRoute = ({ user }) => {
+    const location = useLocation();
+
+    const path = location.pathname ? location.pathname : '/login';
+
+
     if (!user?.name) {
-        return <Navigate to={redirectPath} replace />;
+        return <Navigate replace={true} to={path} />;
     }
 
     return <Outlet />;

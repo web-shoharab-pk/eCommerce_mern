@@ -1,16 +1,17 @@
+import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
+import Typography from '@mui/material/Typography';
 import React, { Fragment } from 'react';
 import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { addItemsToCart, removeItemsFromCart } from '../../actions/cartAction';
+import MetaData from '../layout/MetaData';
 import './Cart.css';
 import CartItemCard from './CartItemCard';
-import Typography from '@mui/material/Typography';
-import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
-import MetaData from '../layout/MetaData';
 
 const Cart = () => {
-    const alert = useAlert()
+    const alert = useAlert();
+    const navigate = useNavigate()
     const dispatch = useDispatch();
     const { cartItems } = useSelector(state => state.cart);
 
@@ -30,9 +31,13 @@ const Cart = () => {
         }
         dispatch(addItemsToCart(id, newQty))
     }
+
+    const checkoutHandler = () => {
+        navigate('/login?redirect=/order/shipping')
+    }
     return (
         <Fragment>
-<MetaData title="Cart -- ECOMMERCE" />
+            <MetaData title="Cart -- ECOMMERCE" />
             <br /><br />
             {
                 cartItems.length === 0 ? (
@@ -40,7 +45,7 @@ const Cart = () => {
                         <RemoveShoppingCartIcon />
                         <Typography>
                             No Product In Your Cart!
-                        </Typography> 
+                        </Typography>
                         <Link to="/products">View Products</Link>
                     </div>
                 )
@@ -83,7 +88,7 @@ const Cart = () => {
 
                                 </div>
                                 <div className="checkoutBtn">
-                                    <button>Check Out</button>
+                                    <button onClick={checkoutHandler}>Check Out</button>
                                 </div>
                             </div>
                         </div>

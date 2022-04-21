@@ -25,6 +25,7 @@ const Cart = lazy(() => import('./component/Cart/Cart'));
 const Shipping = lazy(() => import('./component/Cart/Shipping'));
 const ConfirmOrder = lazy(() => import('./component/Cart/ConfirmOrder'));
 const OrderSuccess = lazy(() => import('./component/Cart/OrderSuccess'));
+const MyOrders = lazy(() => import('./component/Cart/MyOrders.js'));
 const PaymentElements = lazy(() => import('./component/Cart/PaymentElements'));
 
 
@@ -77,6 +78,7 @@ function App() {
           <Route path="/order/confirm" element={<ConfirmOrder />} />
           <Route path="/order/payment" element={<PaymentElements stripeApiKey={stripeApiKey} />} />
           <Route path="/order/success" element={<OrderSuccess />} />
+          <Route path="/order/me" element={<MyOrders />} />
         </Route>
 
         <Route path="/password/forgot" element={<ForgotPassword />} />

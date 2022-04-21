@@ -1,21 +1,15 @@
-import { useLayoutEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import {
     Navigate,
-    Outlet,
-    useLocation
+    Outlet
 } from 'react-router-dom';
 
-const ProtectedRoute = ({ user }) => {
-    const location = useLocation();
-    const [isLogin, setIsLogin] = useState(false);
-    const path = location.pathname ? location.pathname : '/login';
+const ProtectedRoute = () => {
 
-    useLayoutEffect(() => {
-        setIsLogin(!user?.name)
-    }, [user?.name])
-    
-    if (isLogin) {
-        return <Navigate replace={true} to={path} />;
+    const { loading, isAuthenticated } = useSelector(state => state.user);
+
+    if (!loading && isAuthenticated === false) {
+        return <Navigate replace={true} to='/login' />;
     }
 
     return <Outlet />;

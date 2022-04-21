@@ -3,9 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
     "@mui/icons-material": "^5.4.1",
-    "@mui/material": "^5.4.1",
+    "@mui/material": "^5.6.2",
+    "@mui/styled-engine-sc": "^5.6.1",
     "@mui/styles": "^5.4.1",
+    "@mui/x-data-grid": "^5.9.0",
     "@stripe/react-stripe-js": "^1.7.1",
     "@stripe/stripe-js": "^1.27.0",
     "@testing-library/jest-dom": "^5.16.2",
@@ -30,6 +34,7 @@
     "redux": "^4.1.2",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.1",
+    "styled-components": "^5.3.5",
     "web-vitals": "^2.1.4",
     "webfontloader": "^1.6.28"
   },

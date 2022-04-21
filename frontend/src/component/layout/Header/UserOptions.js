@@ -35,7 +35,7 @@ const UserOptions = ({ user }) => {
 
         { icon: <PersonIcon />, name: 'Profile', func: () => redirectRoute("/account") },
         { icon: <ShoppingCartIcon style={{color: cartItems.length ? 'tomato':'unset'}} />, name:`Cart(${cartItems.length})`, func: () => redirectRoute("/cart") },
-        { icon: <ListAltIcon />, name: 'Orders', func: () => redirectRoute("/orders") },
+        { icon: <ListAltIcon />, name: 'Orders', func: () => redirectRoute("/order/me") },
         { icon: <ExitToAppIcon />, name: 'Logout', func: () => logoutUser() },
     ];
     if (user.role === 'admin') {

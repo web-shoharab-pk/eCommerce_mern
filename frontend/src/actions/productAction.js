@@ -1,7 +1,7 @@
 import callApi from "../API/axios";
 import {
   ALL_PRODUCT_FAIL,
-  ALL_PRODUCT_REQUEST, ALL_PRODUCT_SUCCESS, CLEAR_ERRORS, PRODUCT_DETAILS_FAIL, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS
+  ALL_PRODUCT_REQUEST, ALL_PRODUCT_SUCCESS, CLEAR_ERRORS, NEW_REVIEW_FAIL, NEW_REVIEW_REQUEST, NEW_REVIEW_SUCCESS, PRODUCT_DETAILS_FAIL, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS
 } from "./../constants/productConstants";
 
 
@@ -49,6 +49,32 @@ export const getProductDetails = (id) => async (dispatch) => {
     });
   }
 };
+
+
+// new review
+export const newReview = (reviewData) => async (dispatch) => {
+
+  try {
+    dispatch({
+      type: NEW_REVIEW_REQUEST
+    });
+
+    const config = {headers: {'Content-Type': 'application/json'}};
+    
+    const { data } = await callApi.put(`/review`, reviewData, config);
+    dispatch({
+      type: NEW_REVIEW_SUCCESS,
+      payload: data.success,
+    });
+  } catch (error) {
+    console.log("error", error)
+    dispatch({
+      type: NEW_REVIEW_FAIL,
+      payload: error.response?.data.error,
+    });
+  }
+};
+
 
 // Clearing Errors
 export const clearErrors = () => async (dispatch) => {

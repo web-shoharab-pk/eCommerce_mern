@@ -1,3 +1,4 @@
+ 
 import { lazy, Suspense, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
@@ -5,6 +6,7 @@ import WebFont from "webfontloader";
 import { loadUser } from './actions/userAction';
 import callApi from './API/axios';
 import './App.css'; 
+import Dashboard from './component/Dashboard/Dashboard';
 import Footer from './component/layout/Footer/Footer';
 import UserOptions from './component/layout/Header//UserOptions.js';
 import Header from './component/layout/Header/header';
@@ -26,6 +28,7 @@ const Shipping = lazy(() => import('./component/Cart/Shipping'));
 const ConfirmOrder = lazy(() => import('./component/Cart/ConfirmOrder'));
 const OrderSuccess = lazy(() => import('./component/Cart/OrderSuccess'));
 const MyOrders = lazy(() => import('./component/Cart/MyOrders.js'));
+const OrderDetails = lazy(() => import('./component/Cart/OrderDetails.js'));
 const PaymentElements = lazy(() => import('./component/Cart/PaymentElements'));
 
 
@@ -40,7 +43,7 @@ function App() {
 
     setStripeApiKey(data.stripeApiKey);
   }
- 
+
   useEffect(() => {
     WebFont.load({
       google: {
@@ -72,13 +75,25 @@ function App() {
 
         <Route element={<ProtectedRoute user={user} />}>
           <Route path='/account' element={<Profile />} />
+
           <Route path="/me/update" element={<UpdateProfile />} />
+
           <Route path="/password/update" element={<UpdatePassword />} />
+
           <Route path="/order/shipping" element={<Shipping />} />
+
           <Route path="/order/confirm" element={<ConfirmOrder />} />
-          <Route path="/order/payment" element={<PaymentElements stripeApiKey={stripeApiKey} />} />
+          {
+            stripeApiKey &&  <Route path="/order/payment" element={<PaymentElements stripeApiKey={stripeApiKey} />} />
+          }
           <Route path="/order/success" element={<OrderSuccess />} />
+
           <Route path="/order/me" element={<MyOrders />} />
+
+          <Route path="/order/:id" element={<OrderDetails />} />
+
+          <Route path="/admin/dashboard" element={<Dashboard />} />
+
         </Route>
 
         <Route path="/password/forgot" element={<ForgotPassword />} />

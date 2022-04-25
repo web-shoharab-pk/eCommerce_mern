@@ -39,7 +39,7 @@ const UserOptions = ({ user }) => {
         { icon: <ExitToAppIcon />, name: 'Logout', func: () => logoutUser() },
     ];
     if (user.role === 'admin') {
-        actions.unshift({ icon: <DashboardIcon />, name: 'Dashboard', func: () => redirectRoute("/dashboard") })
+        actions.unshift({ icon: <DashboardIcon />, name: 'Dashboard', func: () => redirectRoute("/admin/dashboard") })
     }
 
     return (

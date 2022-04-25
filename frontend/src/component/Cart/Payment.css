@@ -30,6 +30,7 @@
   width: 100%;
   padding: 1vmax 4vmax;
   padding-right: 1vmax;
+  color: black;
 }
 .paymentForm > div > svg {
   position: absolute;
@@ -81,11 +82,11 @@
   border: 0;
   outline: 0;
   border-radius: 4px;
-  background: white;
+  background: white !important;
 }
 
 input::placeholder {
-  color: #aab7c4;
+  color: #aab7c4 !important;
 }
 
 input:focus,

@@ -1,27 +1,40 @@
 * {
-    margin: 0px;
-    padding: 0;
-    scroll-behavior: smooth;
+  margin: 0px;
+  padding: 0;
+  scroll-behavior: smooth;
 }
 
 input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button{
-    -webkit-appearance: none;
-    margin: 0;
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
-input[type='number']{
-    -moz-appearance: textfield;
+input[type="number"] {
+  -moz-appearance: textfield;
 }
 
-.greenColor{
-    color: green;
+.greenColor {
+  color: green;
 }
 
-.redColor{
-    color: red;
+.redColor {
+  color: red;
 }
-p{
-    margin: 0px;
+p {
+  margin: 0px;
 }
 
+.MuiDataGrid-columnHeader {
+  background-color: tomato;
+  padding: 1vmax !important;
+}
+
+.MuiDataGrid-columnHeader div {
+  color: white !important;
+  font: 500 1.1vmax "Roboto" !important;
+}
+
+.MuiDataGrid-iconSeparator {
+  display: none !important;
+}

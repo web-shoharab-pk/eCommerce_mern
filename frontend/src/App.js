@@ -7,6 +7,7 @@ import { loadUser } from './actions/userAction';
 import callApi from './API/axios';
 import './App.css'; 
 import Dashboard from './component/Dashboard/Dashboard';
+import ProductList from './component/Dashboard/Products/ProductList';
 import Footer from './component/layout/Footer/Footer';
 import UserOptions from './component/layout/Header//UserOptions.js';
 import Header from './component/layout/Header/header';
@@ -91,8 +92,14 @@ function App() {
           <Route path="/order/me" element={<MyOrders />} />
 
           <Route path="/order/:id" element={<OrderDetails />} />
+          <Route element={<ProtectedRoute admin={true} />}>
 
           <Route path="/admin/dashboard" element={<Dashboard />} />
+
+          <Route path="/admin/products" element={<ProductList />} />
+
+          </Route>
+
 
         </Route>
 

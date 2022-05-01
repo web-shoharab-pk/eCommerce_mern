@@ -6,8 +6,7 @@ import MetaData from '../layout/MetaData';
 import LoaderTwo from '../Loader/LoaderTwo';
 import { clearErrors, getProduct } from './../../actions/productAction';
 import './Home.css';
-import ProductCard from './ProductCard.js';
-import Header from './../layout/Header/header';
+import ProductCard from './ProductCard.js'; 
  
 
 const Home = () => {
@@ -26,9 +25,8 @@ const Home = () => {
  
     return (
         <Fragment>
-            <Header />
             <MetaData title="ECOMMERCE" />
-            <div className="banner pt-5">
+            <div className="banner">
                 <p>Welcome to Ecommerce</p>
                 <h1>FIND AMAZING PRODUCTS BELOW</h1>
 
@@ -38,7 +36,7 @@ const Home = () => {
                     </button>
                 </a>
             </div>
-
+<br />
             <h2 className="homeHeading">Featured Products</h2>
             {
                 loading ?

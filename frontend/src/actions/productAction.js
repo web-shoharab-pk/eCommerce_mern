@@ -28,7 +28,7 @@ export const getProduct = (keyword = "", currentPage = 1, price = [0, 25000], ca
   } catch (error) {
     dispatch({
       type: ALL_PRODUCT_FAIL,
-      payload: error.response.data.error,
+      payload: error?.response?.data.error,
     });
   }
 };
@@ -49,7 +49,7 @@ export const getAdminProduct = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: ADMIN_PRODUCT_FAIL,
-      payload: error.response.data.error,
+      payload: error?.response?.data.error,
     });
   }
 }

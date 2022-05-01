@@ -1,7 +1,7 @@
 .container {
     width: 100%;
     max-width: 1440px;
-    margin: 2px auto;
+    /* margin: 2px auto; */
     padding: 0 15px;
   }
   .header-area {

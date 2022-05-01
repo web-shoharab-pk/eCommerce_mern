@@ -104,7 +104,9 @@ const OrderDetails = () => {
                                 <Typography>Payment</Typography>
                                 <div className="order-payment-info">
                                     <div>
-                                        <p className={
+                                    <p>Payment Status:</p>
+                                        <p
+                                         className={
                                             order?.paymentInfo?.status === "succeeded" ? 'greenColor' : 'redColor'
                                         }>
                                             {order?.paymentInfo?.status === "succeeded" ? "PAID" : "UNPAID"}

@@ -3,7 +3,7 @@ import Slider from '@mui/material/Slider';
 import Typography from '@mui/material/Typography';
 import React, { Fragment, useEffect, useState } from 'react';
 import { useAlert } from 'react-alert';
-import Pagination from "react-js-pagination";
+import Pagination from '@mui/material/Pagination';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
 import { clearErrors, getProduct } from '../../actions/productAction';
@@ -32,10 +32,7 @@ const Products = () => {
     const dispatch = useDispatch()
     const { products, loading, error, productsCount, resultPerPage, } = useSelector(state => state.products)
     const { keyword } = useParams();
-
-    const setCurrentPageNo = (e) => {
-        setCurrentPage(e)
-    }
+ 
 
     const priceHandler = (e, newPrice) => {
         setPrice(newPrice)
@@ -43,7 +40,7 @@ const Products = () => {
 
     useEffect(() => {
         if(error) {
-            alert.error(alert)
+            alert.error(error)
             dispatch(clearErrors())
         }
         setTimeout(() => {
@@ -116,21 +113,8 @@ const Products = () => {
                         {
                             ((resultPerPage < productsCount) && (products.length !== 0)) &&
                             (
-                                <div className="paginationBox">
-                                    <Pagination
-                                        activePage={currentPage}
-                                        itemsCountPerPage={resultPerPage}
-                                        totalItemsCount={productsCount}
-                                        onChange={setCurrentPageNo}
-                                        nextPageText="Next"
-                                        prevPageText="Prev"
-                                        firstPageText="1st"
-                                        lastPageText="Last"
-                                        itemClass="page-item"
-                                        linkClass="page-link"
-                                        activeClass='pageItemActive'
-                                        activeLinkClass='pageLinkActive'
-                                    />
+                                <div className="paginationBox"> 
+                                      <Pagination onChange={(e) => setCurrentPage(parseInt(e.target.outerText))} count={parseInt(16 / 8) + 1} color="secondary" variant="outlined" shape="rounded" />
                                 </div>
                             )
                         }

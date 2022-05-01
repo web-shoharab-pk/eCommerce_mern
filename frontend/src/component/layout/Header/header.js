@@ -1,6 +1,4 @@
 import React, { Fragment } from 'react';
-import { Nav, Navbar, NavLink } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import "./Header.css";
 
 const header = () => {
@@ -9,8 +7,7 @@ const header = () => {
   return (
 
     <Fragment>
-      <Navbar className="header-navbar" fixed="top" variant="dark" expand="lg">
-        {/* <Container> */}
+      {/* <Navbar className="header-navbar" fixed="top" variant="dark" expand="lg"> 
         <Navbar.Brand href="/">
           ECOMMERCE
         </Navbar.Brand>
@@ -25,9 +22,8 @@ const header = () => {
             <Link component={NavLink} to="/about">About</Link>
             <Link component={NavLink} to="/login">Login</Link>
           </Nav>
-        </Navbar.Collapse>
-        {/* </Container> */}
-      </Navbar>
+        </Navbar.Collapse> 
+      </Navbar> */}
       <br />
     </Fragment>
   );

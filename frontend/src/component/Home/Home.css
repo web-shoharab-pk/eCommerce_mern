@@ -1,12 +1,13 @@
 .banner{
     background-image: linear-gradient(to right, #635dc0, #3027ae);
-    height: 95vmin;
+    height: 70vh;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-self: center;
     color: white;
+    margin-bottom: 2vmax;
 }
 
 .banner > h1{
@@ -40,24 +41,24 @@
 .banner::after{
     content: "";
     width: 100vw;
-    height: 100vmin;
+    height: 70vh;
     background-color: #ffffff;
     position: absolute;
     top: 0%;
     left: 0;
-    clip-path: polygon(100% 80%, 0% 100%, 100% 100%);
+    clip-path: polygon(100% 70%, 100% 100%, 100% 100%);
     max-width: 100%;
 }
 
 .banner::before{
     content: "";
     width: 100vw;
-    height: 100vmin;
+    height: 100vh;
     background-color: #ffffff;
     position: absolute;
     top: 0%;
     left: 0;
-    clip-path: polygon(0 80%, 0% 100%, 100% 100%);
+    clip-path: polygon(100% 70%, 0% 100%, 0% 100%);
     max-width: 100%;
 }
 

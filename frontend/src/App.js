@@ -1,16 +1,16 @@
- 
+
 import { lazy, Suspense, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import WebFont from "webfontloader";
 import { loadUser } from './actions/userAction';
 import callApi from './API/axios';
-import './App.css'; 
+import './App.css';
 import Dashboard from './component/Dashboard/Dashboard';
 import ProductList from './component/Dashboard/Products/ProductList';
 import Footer from './component/layout/Footer/Footer';
 import UserOptions from './component/layout/Header//UserOptions.js';
-import Header from './component/layout/Header/header';
+import Navbar from './component/layout/Navbar/Navbar';
 import Loader from './component/Loader/Loader';
 import ProtectedRoute from './component/Route/ProtectedRoute';
 import LoginSignup from './component/User/LoginSignup';
@@ -56,7 +56,8 @@ function App() {
   }, []);
   return (
     <Suspense fallback={<Loader />}>
-      <Header />
+      <Navbar />
+
       {
         isAuthenticated &&
         <UserOptions user={user} />
@@ -85,7 +86,7 @@ function App() {
 
           <Route path="/order/confirm" element={<ConfirmOrder />} />
           {
-            stripeApiKey &&  <Route path="/order/payment" element={<PaymentElements stripeApiKey={stripeApiKey} />} />
+            stripeApiKey && <Route path="/order/payment" element={<PaymentElements stripeApiKey={stripeApiKey} />} />
           }
           <Route path="/order/success" element={<OrderSuccess />} />
 
@@ -94,9 +95,9 @@ function App() {
           <Route path="/order/:id" element={<OrderDetails />} />
           <Route element={<ProtectedRoute admin={true} />}>
 
-          <Route path="/admin/dashboard" element={<Dashboard />} />
+            <Route path="/admin/dashboard" element={<Dashboard />} />
 
-          <Route path="/admin/products" element={<ProductList />} />
+            <Route path="/admin/products" element={<ProductList />} />
 
           </Route>
 

@@ -62,6 +62,10 @@
     max-width: 100%;
 }
 
+.product-section { 
+    background-color: #F8F8F8;
+}
+
 .homeHeading{
     text-align: center;
     font-family: Roboto;
@@ -89,6 +93,7 @@
     margin: 2vmax;
     transition: all 0.5s;
     padding-bottom: 0.5vmax;
+    border: 2px solid #fff;
 }
 
 .productCard > img {
@@ -138,5 +143,10 @@
     .productCardSpan {
         margin: 0 0.5vmax;
         font: 300 1vmax "Roboto";
+    }
+
+    .homeHeading {
+        width: 30vmax;
+        font-size: 3.5vmax;
     }
 }

@@ -1,14 +1,14 @@
-footer {
+#footer {
     margin-top: 10vmax;
     padding: 2vmax;
-    background-color: rgb(34, 33, 33);
+    background-color: rgb(131, 129, 129);
     color: white;
     display: flex;
     align-items: center;
 }
 
 .leftFooter{
-    width: 20%;
+    width: 25%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -29,24 +29,50 @@ footer {
     cursor: pointer;
 }
 
+.logo-section { 
+    width: 25%;
+}
+
+.logo-section > img {
+    width: 25vmax;
+    height: 6vmax;
+    color: white !important;
+}
+
+.logo-section > div {
+    padding: 0 4vmax;
+}
+
+.logo-section > div li {
+    list-style-type: none;
+}
+
+.logo-section > div li a {
+    text-decoration: none;
+    display: block;
+    align-items: center;
+    font-size: 1rem;
+    color: #fff;
+    margin-top: .4rem;
+}
+
 .midFooter {
-    width: 60%;
+    width: 25%;
     text-align: center;
 }
 
 .midFooter > h1{
-    font-size: 4vmax;
+    font-size: 3vmax;
     font-family: 'Roboto';
     color: rgb(240, 220, 44);
 }
 
-.midFooter > p{
-    max-width: 60%;
+.midFooter > p{ 
     margin: 1vmax auto;
 }
 
 .rightFooter{
-    width: 20%;
+    width: 25%;
     display: flex;
     flex-direction: column;
 }

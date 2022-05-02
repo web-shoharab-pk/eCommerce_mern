@@ -1,0 +1,85 @@
+.premium-product-heading {
+    display: grid;
+    grid-column: 4/10;
+    padding-top: 1rem ;
+    margin-bottom: 3vmax;
+}
+
+.premium-product-heading > h1 {
+    margin-bottom: 1rem;
+    color: #000000 ;
+    text-align: center;
+    font-family: "Circular",sans-serif;
+}
+
+.premium-product-heading > p {
+    color: #000000 ;
+    text-align: center;
+    font-family: "Circular",sans-serif;
+    margin: 0;
+}
+
+.premium-product {
+    display: flex;
+    flex-wrap: wrap;
+    /* padding: 0 5vmax; */
+    justify-content: center;
+    min-height: 30vh;
+}
+
+.premium-product-card {
+    width: 340px;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: rgb(48, 48, 48);
+    margin: 2vmax;
+    transition: all 0.5s;
+    padding-bottom: 0.5vmax;
+    border-radius: 3px; 
+}
+
+.premium-product-card > span {
+    text-align: left;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.0625rem;
+    font-family: "Circular",sans-serif;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    margin: 1rem 0; 
+}
+
+.premium-product-card > h3 {
+    margin-bottom: .51rem;
+    text-align: left;
+    font-size: 1.5rem;
+    line-height: 1.75rem;
+    font-family: "Circular",sans-serif;
+}
+
+.premium-product-card > p {
+    text-align: left;
+    font-weight: 600;  
+    font-family: "Circular",sans-serif;
+    font-size: 1rem;
+    line-height: 1rem;
+    margin: 0.81rem 0; 
+}
+
+.premium-product-card > a {
+    color: #000;
+    text-decoration: none;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    text-align: left;
+    font-family: "Circular",sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.0156925rem;
+    cursor: pointer;
+}
+
+.premium-product-card > a:hover {
+    transition: scale 0.25s;
+    line-height: 1.7; 
+}

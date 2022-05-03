@@ -16,7 +16,7 @@ const ProductList = () => {
     const dispatch = useDispatch();
     const alert = useAlert();
 
-    const { error, products } = useSelector(state => state.products);
+    const { error, products, loading } = useSelector(state => state.products);
 
 
     const columns = [
@@ -81,6 +81,7 @@ const ProductList = () => {
                     <h1 className="productListHeading">All Product List</h1>
 
                     <DataGrid
+                    loading={loading}
                     rows={rows}
                     columns={columns}
                     pageSize={10}

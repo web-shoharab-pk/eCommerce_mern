@@ -6,8 +6,6 @@ import WebFont from "webfontloader";
 import { loadUser } from './actions/userAction';
 import callApi from './API/axios';
 import './App.css';
-import Dashboard from './component/Dashboard/Dashboard';
-import ProductList from './component/Dashboard/Products/ProductList';
 import Footer from './component/layout/Footer/Footer';
 import UserOptions from './component/layout/Header//UserOptions.js';
 import Navbar from './component/layout/Navbar/Navbar';
@@ -31,6 +29,9 @@ const OrderSuccess = lazy(() => import('./component/Cart/OrderSuccess'));
 const MyOrders = lazy(() => import('./component/Cart/MyOrders.js'));
 const OrderDetails = lazy(() => import('./component/Cart/OrderDetails.js'));
 const PaymentElements = lazy(() => import('./component/Cart/PaymentElements'));
+const Contact = lazy(() => import('./component/layout/Contact/Contact'));
+const Dashboard = lazy(() => import('./component/Dashboard/Dashboard'));
+const ProductList = lazy(() => import('./component/Dashboard/Products/ProductList'));
 
 
 function App() {
@@ -57,7 +58,7 @@ function App() {
   return (
     <Suspense fallback={<Loader />}>
       <Navbar />
-
+      <br />
       {
         isAuthenticated &&
         <UserOptions user={user} />
@@ -107,6 +108,8 @@ function App() {
         <Route path="/password/forgot" element={<ForgotPassword />} />
 
         <Route path="/password/reset/:token" element={<ResetPassword />} />
+
+        <Route path='/contact' element={<Contact />} />
 
         <Route path='/login' element={<LoginSignup />} />
 

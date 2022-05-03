@@ -114,7 +114,7 @@ const Products = () => {
                             ((resultPerPage < productsCount) && (products.length !== 0)) &&
                             (
                                 <div className="paginationBox"> 
-                                      <Pagination onChange={(e) => setCurrentPage(parseInt(e.target.outerText))} count={parseInt(productsCount / 8) + 1} color="secondary" variant="outlined" shape="rounded" />
+                                      <Pagination value={currentPage} onChange={(e) => setCurrentPage(parseInt(e.target.outerText))} count={parseInt(productsCount / 8) + 1} color="secondary" variant="outlined" shape="rounded" />
                                 </div>
                             )
                         }

@@ -1,33 +1,44 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import MenuIcon from '@mui/icons-material/Menu';
+import IconButton from '@mui/material/IconButton';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { Link, NavLink } from 'react-router-dom';
+import { loadUser } from '../../../actions/userAction';
+import store from '../../../store';
 import logo from './../../../images/ecommerce.png';
 import './Navbar.css';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import NavDrawer from './NavDrawer';
 
 const Navbar = () => {
 
+    const { isAuthenticated, loading } = useSelector(state => state.user);
+
     const [state, setState] = React.useState({});
-    
+
     const toggleDrawer = (open) => (event) => {
-      if (
-        event &&
-        event.type === 'keydown' &&
-        (event.key === 'Tab' || event.key === 'Shift')
-      ) {
-        return;
-      }
-  
-      setState({ ...state, left: open });
+        if (
+            event &&
+            event.type === 'keydown' &&
+            (event.key === 'Tab' || event.key === 'Shift')
+        ) {
+            return;
+        }
+
+        setState({ ...state, left: open });
     };
+
+    useEffect(() => {
+        store.dispatch(loadUser())
+    }, [])
 
     return (
         <nav>
             <div className="navbar">
                 <div>
                     <div className="navbar-logo">
-                        <img className="logo" src={logo} alt="Ecommerce" />
+                        <Link to="/">
+                            <img className="logo" src={logo} alt="Ecommerce" />
+                        </Link>
                     </div>
                 </div>
                 <div>
@@ -45,21 +56,29 @@ const Navbar = () => {
                             <NavLink to="/search">Search</NavLink>
                         </li>
                         <li>
-                            <NavLink to="/account">Account</NavLink>
+                            <NavLink to="/contact">Contact</NavLink>
                         </li>
-                        <li>
-                            <NavLink to="/login">Login</NavLink>
-                        </li>
+                        {
+                            (isAuthenticated === true && loading === false) ?
+                                <li>
+                                    <NavLink to="/account">Account</NavLink>
+                                </li>
+                                :
+                                <li>
+                                    <NavLink to="/login">Login</NavLink>
+                                </li>
+                        }
+
                     </ul>
                     <div className="icon-menu">
-                    <IconButton onClick={toggleDrawer(true)}>
-                        <MenuIcon />
-                    </IconButton>
+                        <IconButton onClick={toggleDrawer(true)}>
+                            <MenuIcon />
+                        </IconButton>
                     </div>
                 </div>
             </div>
-<br /><br /> 
-<NavDrawer state={state} toggleDrawer={toggleDrawer} />
+            <br /><br />
+            <NavDrawer state={state} toggleDrawer={toggleDrawer} />
         </nav>
     );
 };

@@ -42,10 +42,10 @@ const Profile = () => {
                                 </div>
                                 <div>
                                     <h4>Joined On</h4>
-                                    <p>{String(user.createdAt).substr(0, 10)}</p>
+                                    <p>{String(user.createdAt).slice(0, 10) }</p>
                                 </div>
                                 <div>
-                                    <Link to="/orders">My Orders</Link>
+                                    <Link to="/order/me">My Orders</Link>
                                     <Link to="/password/update">Change Password</Link>
                                 </div>
                             </div>

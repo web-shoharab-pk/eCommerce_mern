@@ -1,0 +1,85 @@
+#contact-title {
+    margin: 1vmax auto;
+    width: 15vmax;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 2vmax;
+    color: rgba(0, 0, 0, 0.8);
+    font: 500 1.5vmax "Roboto";
+    text-align: center;
+}
+
+.contact-container {
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+}
+
+.contact-container > div > img {
+    width: 100%;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto; 
+    /* justify-content: space-evenly; */
+    height: 70%;
+    transition: all 0.5s;
+    width: 100%;
+}
+
+
+.contact-form > div {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.contact-form > div > input {
+    padding: 1vmax 3vmax;
+    padding-right: 1vmax;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.267);
+    border-radius: 4px;
+    font: 500 0.9vmax cursive;
+    margin: 1vmax 0;
+}
+
+.contact-form > div > textarea {
+    padding: 1vmax 3vmax;
+    padding-right: 1vmax; 
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.267);
+    border-radius: 4px;
+    font: 500 0.9vmax cursive;
+    margin: 1vmax 0;
+}
+
+.contact-form > div > svg {
+    position: absolute;
+    transform: translateX(1vmax);
+    font-size: 1.6vmax;
+    color: rgba(0, 0, 0, 0.623)
+}
+
+.contact-btn {
+    border: none;
+    background-color: tomato;
+    color: white;
+    font: 500 1vmax "Roboto";
+    width: 100%;
+    cursor: pointer;
+    padding: 1vmax;
+    transition: all 0.5s;
+    border-radius: 4px;
+    outline: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.213);
+}
+
+@media screen and (max-width: 768px){
+    .contact-container {
+        flex-direction: column;
+    }
+}

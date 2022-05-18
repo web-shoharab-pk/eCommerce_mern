@@ -3,13 +3,13 @@
     max-width: 100%;
     display: grid;
     grid-template-columns: 1fr 5fr;
-    position: absolute;
+    position: absolute; 
 }
 
 .dashboardContainer {
     border-left: 1px solid rgba(0, 0, 0, .13);
     background-color: #fff;
-    padding: 3rem 0;
+    padding: 2rem 0;
 }
 
 .dashboardContainer > h1 {
@@ -21,7 +21,7 @@
 }
 
 .dashboardSummary {
-    margin: 2rem 0; 
+    margin: 1rem 0; 
 }
 
 .dashboardSummary > div {

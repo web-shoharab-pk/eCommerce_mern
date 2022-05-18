@@ -66,7 +66,7 @@
     max-width: 100%;
 }
 .productCard{
-    width: 14vmax;
+    width: 240px;
     display: flex;
     flex-direction: column;
     text-decoration: none;
@@ -74,11 +74,12 @@
     margin: 2vmax;
     transition: all 0.5s;
     padding-bottom: 0.5vmax;
-    border: 2px solid #fff;
+    /* border: 2px solid #fff; */
+    box-shadow: 0 0 5px rgba(82, 81, 81, 0.09);
 }
 
 .productCard > img {
-    width: 14vmax;
+    width: 100;
 }
 
 .productCard >div {

@@ -6,6 +6,7 @@ import WebFont from "webfontloader";
 import { loadUser } from './actions/userAction';
 import callApi from './API/axios';
 import './App.css';
+import NewProduct from './component/Dashboard/Products/NewProduct';
 import Footer from './component/layout/Footer/Footer';
 import UserOptions from './component/layout/Header//UserOptions.js';
 import Navbar from './component/layout/Navbar/Navbar';
@@ -99,6 +100,8 @@ function App() {
             <Route path="/admin/dashboard" element={<Dashboard />} />
 
             <Route path="/admin/products" element={<ProductList />} />
+
+            <Route path="/admin/product" element={<NewProduct />} />
 
           </Route>
 

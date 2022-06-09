@@ -3,9 +3,12 @@ const ErrorHandler = require("../utils/errorHandler");
 const Product = require("../models/ProductModel");
 const catchAsyncError = require("./../middleware/catchAsyncError");
 
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY)
+
 // Create new Order
 exports.newOrder = catchAsyncError(async (req, res, next) => {
 
+    try {
     const {
         shippingInfo,
         orderItems,
@@ -16,11 +19,41 @@ exports.newOrder = catchAsyncError(async (req, res, next) => {
         totalPrice,
         paymentIntent
     } = req.body;
+    
+    const session = await stripe.checkout.sessions.create({
+        payment_method_types: ["card"],
+        mode: "payment",
+        line_items: orderItems.map(item => {
+          return {
+            price_data: {
+              currency: "usd",
+              unit_amount: item.price*100,
+              product_data: {
+                name: item.name,
+                images: [item.image]
+              }, 
+            },
+            quantity: item.quantity,
+          }
+        }),
+        mode: 'payment',
+        success_url: `${process.env.CLIENT_SITE}/order/success`,
+        cancel_url: `${process.env.CLIENT_SITE}/order/cancel`,
+      }) 
+
+        res.status(201).json({
+        success: true,
+        url: session.url
+    });
+
 
     const order = await Order.create({
         shippingInfo,
         orderItems,
-        paymentInfo,
+        paymentInfo: {
+            status: session.payment_status,
+            id: session.id
+        },
         itemsPrice,
         taxPrice,
         shippingCharges,
@@ -30,10 +63,9 @@ exports.newOrder = catchAsyncError(async (req, res, next) => {
         paymentIntent
     });
 
-    res.status(201).json({
-        success: true,
-        order,
-    });
+} catch (e) {
+    res.status(500).json({ error: e.message })
+  }
 });
 
 // GET SINGLE ORDER
@@ -55,7 +87,7 @@ exports.getSingleOrder = catchAsyncError(async (req, res, next) => {
 // GET LOGGEDIN USER ORDERS
 exports.myOrders = catchAsyncError(async (req, res, next) => {
 
-    const order = await Order.find({ user: req.user._id });
+    const order = (await Order.find({ user: req.user._id })).reverse();
 
     res.status(200).json({
         success: true,
@@ -81,6 +113,24 @@ exports.getAllOrders = catchAsyncError(async (req, res, next) => {
     })
 });
 
+// UPDATE ORDER PAYMENT STATUS -- ADMIN - AUTOMATIC
+exports.updatePaymentStatus = catchAsyncError(async (req, res, next) => {
+
+    const order = (await Order.find({ user: req.user._id })).reverse();
+
+    if (!order) {
+        return next(new ErrorHandler("Order Not Found with this Id!", 404));
+    }
+    
+    order[0].paymentInfo.status = "PAID";
+
+    await order[0].save({ validateBeforeSave: false });
+
+    res.status(200).json({
+        success: true,
+        order 
+    })
+})
 
 
 // Update ORDERS Status -- admin

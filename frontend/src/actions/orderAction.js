@@ -3,7 +3,7 @@ import {
     ALL_ORDERS_FAIL,
     ALL_ORDERS_REQUEST,
     ALL_ORDERS_SUCCESS, CREATE_ORDER_FAIL, CREATE_ORDER_REQUEST, CREATE_ORDER_SUCCESS, DELETE_ORDERS_FAIL,
-    DELETE_ORDERS_REQUEST, DELETE_ORDERS_SUCCESS, MY_ORDERS_FAIL, MY_ORDERS_REQUEST, MY_ORDERS_SUCCESS, ORDERS_DETAILS_FAIL, ORDERS_DETAILS_REQUEST, ORDERS_DETAILS_SUCCESS, UPDATE_ORDERS_FAIL, UPDATE_ORDERS_REQUEST, UPDATE_ORDERS_SUCCESS
+    DELETE_ORDERS_REQUEST, DELETE_ORDERS_SUCCESS, MY_ORDERS_FAIL, MY_ORDERS_REQUEST, MY_ORDERS_SUCCESS, ORDERS_DETAILS_FAIL, ORDERS_DETAILS_REQUEST, ORDERS_DETAILS_SUCCESS, PAYMENT_UPDATE_FAIL, PAYMENT_UPDATE_REQUEST, PAYMENT_UPDATE_SUCCESS, UPDATE_ORDERS_FAIL, UPDATE_ORDERS_REQUEST, UPDATE_ORDERS_SUCCESS
 } from "../constants/orderConstants";
 import { CLEAR_ERRORS } from "../constants/productConstants";
 
@@ -14,6 +14,10 @@ export const createOrder = (order) => async (dispatch) => {
         dispatch({ type: CREATE_ORDER_REQUEST });
 
         const { data } = await callApi.post('/order/new', order);
+
+        if(data.url) {
+            window.location.replace(data.url)
+        }
 
         dispatch({ type: CREATE_ORDER_SUCCESS, payload: data })
     } catch (error) {
@@ -37,6 +41,25 @@ export const myOrders = () => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: MY_ORDERS_FAIL,
+            payload: error.response?.data?.message
+        })
+    }
+};
+
+
+// MY ORDER 
+export const updatePaymentStatus = () => async (dispatch) => {
+    try {
+
+        dispatch({type: PAYMENT_UPDATE_REQUEST})
+
+        const { data } = await callApi.put('/order/payment/update');
+
+        dispatch({ type: PAYMENT_UPDATE_SUCCESS, payload: data.success });
+ 
+    } catch (error) {
+        dispatch({
+            type: PAYMENT_UPDATE_FAIL,
             payload: error.response?.data?.message
         })
     }

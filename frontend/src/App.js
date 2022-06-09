@@ -1,10 +1,9 @@
 
-import { lazy, Suspense, useEffect, useState } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import WebFont from "webfontloader";
 import { loadUser } from './actions/userAction';
-import callApi from './API/axios';
 import './App.css';
 import OrderList from './component/Dashboard/Orders/OrderList';
 import NewProduct from './component/Dashboard/Products/NewProduct';
@@ -31,7 +30,6 @@ const ConfirmOrder = lazy(() => import('./component/Cart/ConfirmOrder'));
 const OrderSuccess = lazy(() => import('./component/Cart/OrderSuccess'));
 const MyOrders = lazy(() => import('./component/Cart/MyOrders.js'));
 const OrderDetails = lazy(() => import('./component/Cart/OrderDetails.js'));
-const PaymentElements = lazy(() => import('./component/Cart/PaymentElements'));
 const Contact = lazy(() => import('./component/layout/Contact/Contact'));
 const Dashboard = lazy(() => import('./component/Dashboard/Dashboard'));
 const ProductList = lazy(() => import('./component/Dashboard/Products/ProductList'));
@@ -41,14 +39,6 @@ function App() {
 
   const { isAuthenticated, user } = useSelector(state => state.user);
 
-  const [stripeApiKey, setStripeApiKey] = useState("");
-
-  async function getStripeApiKey() {
-    const { data } = await callApi.get('/stripe/api/key');
-
-    setStripeApiKey(data.stripeApiKey);
-  }
-
   useEffect(() => {
     WebFont.load({
       google: {
@@ -56,7 +46,6 @@ function App() {
       },
     });
     store.dispatch(loadUser())
-    getStripeApiKey()
   }, []);
   return (
     <Suspense fallback={<Loader />}>
@@ -89,14 +78,13 @@ function App() {
           <Route path="/order/shipping" element={<Shipping />} />
 
           <Route path="/order/confirm" element={<ConfirmOrder />} />
-          {
-            stripeApiKey && <Route path="/order/payment" element={<PaymentElements stripeApiKey={stripeApiKey} />} />
-          }
+
           <Route path="/order/success" element={<OrderSuccess />} />
 
           <Route path="/order/me" element={<MyOrders />} />
 
           <Route path="/order/:id" element={<OrderDetails />} />
+          
           <Route element={<ProtectedRoute admin={true} />}>
 
             <Route path="/admin/dashboard" element={<Dashboard />} />

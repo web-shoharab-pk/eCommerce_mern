@@ -1,11 +1,13 @@
 const express = require("express");
-const { newOrder, getSingleOrder , myOrders, getAllOrders, updateOrderStatus, deleteOrder } = require("../controller/orderController");
+const { newOrder, getSingleOrder , myOrders, getAllOrders, updateOrderStatus, deleteOrder, updatePaymentStatus } = require("../controller/orderController");
 const router = express.Router();
 const { isAuthenticatedUser, authorizeRoles } = require("../middleware/auth");
 
 router.route("/order/new").post( isAuthenticatedUser, newOrder);
 
 router.route("/order/me").get(isAuthenticatedUser, myOrders);
+
+router.route("/order/payment/update").put(isAuthenticatedUser, updatePaymentStatus);
 
 router.route("/order/:id").get(isAuthenticatedUser, getSingleOrder);
 

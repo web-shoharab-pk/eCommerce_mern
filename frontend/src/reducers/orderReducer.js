@@ -16,6 +16,9 @@ import {
     ORDERS_DETAILS_FAIL,
     ORDERS_DETAILS_REQUEST,
     ORDERS_DETAILS_SUCCESS,
+    PAYMENT_UPDATE_FAIL,
+    PAYMENT_UPDATE_REQUEST,
+    PAYMENT_UPDATE_SUCCESS,
     UPDATE_ORDERS_FAIL,
     UPDATE_ORDERS_REQUEST,
     UPDATE_ORDERS_RESET,
@@ -171,6 +174,35 @@ export const orderDetailsReducer = (state = { orders: [] }, action) => {
                 order: action.payload
             }
         case ORDERS_DETAILS_FAIL:
+            return {
+                loading: false,
+                error: action.payload
+            }
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null
+            }
+        default:
+            return state;
+    }
+}
+
+
+export const paymentUpdate = (state = { }, action) => {
+
+    switch (action.type) {
+        case PAYMENT_UPDATE_REQUEST:
+            return {
+                ...state,
+                loading: true,
+            }
+        case PAYMENT_UPDATE_SUCCESS:
+            return {
+                loading: false,
+                payStatus: action.payload
+            }
+        case PAYMENT_UPDATE_FAIL:
             return {
                 loading: false,
                 error: action.payload

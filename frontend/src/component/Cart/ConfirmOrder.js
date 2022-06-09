@@ -1,15 +1,19 @@
 import { Typography } from '@mui/material';
-import React, { Fragment } from 'react';
-import { useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Fragment } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { createOrder } from '../../actions/orderAction';
 import MetaData from '../layout/MetaData';
 import CheckoutStep from './CheckoutStep';
 import './ConfirmOrder.css';
 
 const ConfirmOrder = () => {
 
-    const navigate = useNavigate();
+
+    const dispatch = useDispatch();
+
     const { shippingInfo, cartItems } = useSelector(state => state.cart);
+
     const { user } = useSelector(state => state.user);
 
     const itemsPrice = cartItems?.reduce((acc, item) => acc + item.quantity * item.price, 0);
@@ -30,11 +34,30 @@ const ConfirmOrder = () => {
             taxPrice,
             totalPrice
         }
-
         sessionStorage.setItem("orderInfo", JSON.stringify(data));
 
-        navigate('/order/payment')
+        const orderData = {
+            shippingInfo,
+            orderItems: cartItems,
+            itemsPrice,
+            shippingCharges,
+            taxPrice,
+            totalPrice,
+        }
+
+        const backData = dispatch(createOrder(orderData))
+
+        console.log("backData", backData)
+
+        // navigate('/order/payment')
     }
+
+    // useEffect(() => {
+    //     if (order?.url) {
+    //         window.location.replace(order?.url)
+    //     }
+
+    // }, [order.url])
     return (
         <Fragment>
             <br /><br />
@@ -47,7 +70,7 @@ const ConfirmOrder = () => {
                     <div className="confirmShippingAreaBox">
                         <div>
                             <p>Name:</p>
-                            <span>{user.name}</span>
+                            <span>{user?.name}</span>
                         </div>
                         <div>
                             <p>Phone:</p>

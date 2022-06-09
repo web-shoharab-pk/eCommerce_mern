@@ -3,7 +3,6 @@ const app = express();
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-const bodyParser = require("body-parser");
 const fileUpload = require("express-fileupload");
 
 const errorMiddleware = require("./middleware/error");

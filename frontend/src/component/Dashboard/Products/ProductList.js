@@ -1,22 +1,30 @@
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+import { Button } from '@mui/material';
+import { DataGrid } from '@mui/x-data-grid';
 import React, { Fragment, useEffect } from 'react';
 import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { clearErrors, deleteProduct, getAdminProduct } from '../../../actions/productAction';
+import { DELETE_PRODUCT_RESET } from '../../../constants/productConstants';
 import MetaData from '../../layout/MetaData';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
-import { Button } from '@mui/material';
-import './ProductList.css'
 import Sidebar from '../Sidebar/Sidebar';
-import { DataGrid } from '@mui/x-data-grid'; 
-import { getAdminProduct } from '../../../actions/productAction';
+import './ProductList.css';
 
 const ProductList = () => {
 
     const dispatch = useDispatch();
     const alert = useAlert();
+    const navigate = useNavigate();
 
     const { error, products, loading } = useSelector(state => state.products);
+
+    const { error: deleteError, isDeleted } = useSelector(state => state.product);
+
+    const deleteProductHandler = async (id) => {
+        dispatch(deleteProduct(id))
+    };
 
 
     const columns = [
@@ -42,7 +50,7 @@ const ProductList = () => {
                         <Link to={`/admin/product/${params.getValue(params.id, 'id')}`}>
                             <EditIcon />
                         </Link>
-                        <Button>
+                        <Button onClick={() => deleteProductHandler(params.getValue(params.id, 'id'))}>
                             <DeleteIcon />
                         </Button>
                     </Fragment>
@@ -52,7 +60,7 @@ const ProductList = () => {
     ]
 
     const rows = [];
-    
+
     products && products.forEach((product) => {
         rows.push({
             id: product._id,
@@ -65,10 +73,21 @@ const ProductList = () => {
     useEffect(() => {
         if (error) {
             alert.error(error)
+            dispatch(clearErrors())
+        }
+        if (deleteError) {
+            alert.error(deleteError)
+            dispatch(clearErrors())
+        }
+
+        if (isDeleted) {
+            alert.success("Product deleted");
+            navigate('/admin/dashboard')
+            dispatch({ type: DELETE_PRODUCT_RESET })
         }
 
         dispatch(getAdminProduct())
-    }, [error, alert, dispatch])
+    }, [error, alert, dispatch, deleteError, isDeleted, navigate])
 
     return (
         <Fragment>
@@ -81,12 +100,12 @@ const ProductList = () => {
                     <h1 className="productListHeading">All Product List</h1>
 
                     <DataGrid
-                    loading={loading}
-                    rows={rows}
-                    columns={columns}
-                    pageSize={10}
-                    className="productListTable"
-                    autoHeight
+                        loading={loading}
+                        rows={rows}
+                        columns={columns}
+                        pageSize={10}
+                        className="productListTable"
+                        autoHeight
                     />
                 </div>
             </div>

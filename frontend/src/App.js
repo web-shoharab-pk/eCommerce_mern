@@ -6,7 +6,9 @@ import WebFont from "webfontloader";
 import { loadUser } from './actions/userAction';
 import callApi from './API/axios';
 import './App.css';
+import OrderList from './component/Dashboard/Orders/OrderList';
 import NewProduct from './component/Dashboard/Products/NewProduct';
+import UpdateProduct from './component/Dashboard/Products/UpdateProduct';
 import Footer from './component/layout/Footer/Footer';
 import UserOptions from './component/layout/Header//UserOptions.js';
 import Navbar from './component/layout/Navbar/Navbar';
@@ -102,6 +104,10 @@ function App() {
             <Route path="/admin/products" element={<ProductList />} />
 
             <Route path="/admin/product" element={<NewProduct />} />
+
+            <Route path="/admin/product/:id" element={<UpdateProduct />} />
+
+            <Route path="/admin/orders" element={<OrderList />} />
 
           </Route>
 

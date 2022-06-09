@@ -1,4 +1,26 @@
-import {CLEAR_ERRORS, CREATE_ORDER_FAIL, CREATE_ORDER_REQUEST, CREATE_ORDER_SUCCESS, MY_ORDERS_FAIL, MY_ORDERS_REQUEST, MY_ORDERS_SUCCESS, ORDERS_DETAILS_FAIL, ORDERS_DETAILS_REQUEST, ORDERS_DETAILS_SUCCESS } from "../constants/orderConstants"
+import {
+    ALL_ORDERS_FAIL,
+    ALL_ORDERS_REQUEST,
+    ALL_ORDERS_SUCCESS,
+    CLEAR_ERRORS,
+    CREATE_ORDER_FAIL,
+    CREATE_ORDER_REQUEST,
+    CREATE_ORDER_SUCCESS,
+    DELETE_ORDERS_FAIL,
+    DELETE_ORDERS_REQUEST,
+    DELETE_ORDERS_RESET,
+    DELETE_ORDERS_SUCCESS,
+    MY_ORDERS_FAIL,
+    MY_ORDERS_REQUEST,
+    MY_ORDERS_SUCCESS,
+    ORDERS_DETAILS_FAIL,
+    ORDERS_DETAILS_REQUEST,
+    ORDERS_DETAILS_SUCCESS,
+    UPDATE_ORDERS_FAIL,
+    UPDATE_ORDERS_REQUEST,
+    UPDATE_ORDERS_RESET,
+    UPDATE_ORDERS_SUCCESS
+} from "../constants/orderConstants"
 
 
 export const newOrderReducer = (state = {}, action) => {
@@ -29,7 +51,7 @@ export const newOrderReducer = (state = {}, action) => {
     }
 }
 
-export const myOrdersReducer = (state = {orders: []}, action) => {
+export const myOrdersReducer = (state = { orders: [] }, action) => {
 
     switch (action.type) {
         case MY_ORDERS_REQUEST:
@@ -57,7 +79,86 @@ export const myOrdersReducer = (state = {orders: []}, action) => {
 }
 
 
-export const orderDetailsReducer = (state = {orders: []}, action) => {
+export const allOrdersReducer = (state = { orders: [] }, action) => {
+
+    switch (action.type) {
+        case ALL_ORDERS_REQUEST:
+            return {
+                loading: true,
+            }
+        case ALL_ORDERS_SUCCESS:
+            return {
+                loading: false,
+                orders: action.payload
+            }
+        case ALL_ORDERS_FAIL:
+            return {
+                loading: false,
+                error: action.payload
+            }
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null
+            }
+        default:
+            return state;
+    }
+}
+
+
+export const orderReducer = (state = {}, action) => {
+
+    switch (action.type) {
+        case UPDATE_ORDERS_REQUEST:
+        case DELETE_ORDERS_REQUEST:
+            return {
+                ...state,
+                loading: true,
+            }
+        case UPDATE_ORDERS_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                isUpdate: action.payload
+            }
+        case DELETE_ORDERS_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                isDeleted: action.payload
+            }
+        case UPDATE_ORDERS_FAIL:
+        case DELETE_ORDERS_FAIL:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            }
+        case UPDATE_ORDERS_RESET:
+            return {
+                ...state,
+                loading: false,
+                isUpdate: false
+            }
+        case DELETE_ORDERS_RESET:
+            return {
+                ...state,
+                loading: false,
+                isDeleted: false
+            }
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null
+            }
+        default:
+            return state;
+    }
+}
+
+
+export const orderDetailsReducer = (state = { orders: [] }, action) => {
 
     switch (action.type) {
         case ORDERS_DETAILS_REQUEST:
